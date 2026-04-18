@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Night Games 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image: url('ranas.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .header-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 48px;
+            color: #15eb47;
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+            position: absolute;
+            top: 5vh
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.7);
+            border: 3px solid #07f285;
+            max-width: 500px;
+            width: 100%;
+            max-height: 65vh;
+            position: absolute;
+            bottom: 5vh
+        }
+        
+        h1 {
+            color: #ff69b4;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #ff9ec4;
+            margin-bottom: 30px;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .game-button {
+            background: linear-gradient(135deg, #ff9ec4 0%, #ffb3d9 100%);
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+        }
+        
+        .game-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+            background: linear-gradient(135deg, #ff69b4 0%, #ff9ec4 100%);
+        }
+
+        .password-cell {
+            background: linear-gradient(135deg, #ff9ec4 0%, #ffb3d9 100%);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+        }
+
+        .password-cell input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+            box-sizing: border-box;
+        }
+
+        .password-cell button {
+            width: 100%;
+            padding: 10px;
+            background: white;
+            color: #ff69b4;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(255, 105, 180, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="header-text">
+        Smoochie Froggy Date Night! 🐸
+    </div>
+    
+    <div class="card">
+        <h1>Date Night Games 💕</h1>
+        <p class="subtitle">Pick a game! hehehe</p>
+        
+        <div class="button-container">
+            <a href="https://mywordle.strivemath.com/?word=dcgsj" class="game-button" target="_blank">
+                🔤 Wordle
+            </a>
+            
+            <a href="https://connectionsplus.io/game/isvMzw" class="game-button" target="_blank">
+                🧩 Connections
+            </a>
+            
+            <div class="password-cell">
+                <div style="color: white; font-size: 18px; font-weight: bold;">
+                    🔐 Toadally Secret Surprise
+                </div>
+                <input 
+                    type="text" 
+                    id="secret-input" 
+                    placeholder="Enter the password..."
+                >
+                <button onclick="checkSecret()">Unlock 💕</button>
+            </div>
+            
+            <a href="https://customstrandsnyt.com/play/FroggyStrands-HoppyFamily/" class="game-button" target="_blank">
+                🐸 Froggy Strands
+            </a>
+        </div>
+    </div>
+
+    <div class="overlay" id="image-overlay" onclick="closeOverlay()">
+        <img src="FrogNote.png" alt="Secret Note" onclick="event.stopPropagation()">
+    </div>
+
+    <script>
+    function checkSecret() {
+        const input = document.getElementById('secret-input').value.toLowerCase().trim();
+        const correctPassword = 'ribbit';
+        
+        if (input === correctPassword) {
+            const overlay = document.getElementById('image-overlay');
+            overlay.style.display = 'flex';
+        } else {
+            alert('Not quite! Try again 💕\n\nHint: 1st Letters of:\nYellow\n+ Green\n+ Blue\n+ Blue\n+ Green\n+ Purple\n');
+        }
+    }
+
+    function closeOverlay() {
+        const overlay = document.getElementById('image-overlay');
+        overlay.style.display = 'none';
+        document.getElementById('secret-input').value = '';
+    }
+
+    // Allow Enter key to submit
+    document.getElementById('secret-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') checkSecret();
+    });
+    </script>
+</body>
+</html>
